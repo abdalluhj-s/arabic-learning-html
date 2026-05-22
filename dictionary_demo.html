@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arabic Lesson - Word-by-Word Dictionary</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Amiri:wght@400;700&display=swap');
+        .arabic-text { font-family: 'Amiri', serif; }
+        .ui-text { font-family: 'Cairo', sans-serif; }
+        .arabic-word { 
+            cursor: pointer; 
+            transition: all 0.2s;
+            border-bottom: 2px dashed transparent;
+        }
+        .arabic-word:hover { 
+            background-color: #eff6ff;
+            border-bottom-color: #3b82f6;
+            color: #2563eb;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 ui-text min-h-screen p-4 sm:p-8">
+
+    <div class="max-w-3xl mx-auto">
+        <!-- Header & Language Selector -->
+        <header class="flex justify-between items-center mb-10 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+            <h1 class="text-2xl font-bold text-gray-800">قاموس الكلمات الذكي</h1>
+            <div class="flex items-center gap-3">
+                <label for="langSelector" class="text-sm font-medium text-gray-500">Dictionary Language:</label>
+                <select id="langSelector" class="bg-blue-50 border-none text-blue-600 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 p-2.5 font-bold outline-none">
+                    <option value="en" selected>English</option>
+                    <option value="ru">Русский</option>
+                    <option value="uz">O'zbek</option>
+                </select>
+            </div>
+        </header>
+
+        <!-- Lesson Container -->
+        <div class="bg-white rounded-3xl shadow-xl border border-gray-100 p-8 sm:p-12 relative">
+            <h2 class="text-gray-400 text-sm font-bold uppercase tracking-widest mb-6 border-b pb-4">الدرس الأول: التحية</h2>
+            
+            <div class="space-y-12">
+                <p class="arabic-text text-5xl text-gray-800 leading-[2.2] text-right" dir="rtl">
+                    <span class="arabic-word" data-en="Peace" data-ru="Мир" data-uz="Tinchlik">السَّلَامُ</span>
+                    <span class="arabic-word" data-en="upon you" data-ru="вам" data-uz="sizga bo'lsin">عَلَيْكُمْ</span>
+                    <span class="arabic-word" data-en="and mercy" data-ru="и милость" data-uz="va rahmat">وَرَحْمَةُ</span>
+                    <span class="arabic-word" data-en="Allah" data-ru="Аллаха" data-uz="Allohning">اللهِ</span>
+                    <span class="arabic-word" data-en="and His blessings" data-ru="и Его благословение" data-uz="va barakasi">وَبَرَكَاتُهُ.</span>
+                </p>
+
+                <p class="arabic-text text-5xl text-gray-800 leading-[2.2] text-right" dir="rtl">
+                    <span class="arabic-word" data-en="My name" data-ru="Меня зовут" data-uz="Mening ismim">اسْمِي</span>
+                    <span class="arabic-word" data-en="Muhammad" data-ru="Мухаммад" data-uz="Muhammad">مُحَمَّدٌ،</span>
+                    <span class="arabic-word" data-en="I" data-ru="Я" data-uz="Men">أَنَا</span>
+                    <span class="arabic-word" data-en="from" data-ru="из" data-uz="dan">مِنَ</span>
+                    <span class="arabic-word" data-en="Egypt" data-ru="Египта" data-uz="Misr">مِصْرَ.</span>
+                    <span class="arabic-word" data-en="What" data-ru="Как" data-uz="Nima/Qanday">مَا</span>
+                    <span class="arabic-word" data-en="your name?" data-ru="твое имя?" data-uz="isomingiz?">اسْمُكَ؟</span>
+                </p>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-gray-50">
+                <p class="text-gray-400 italic text-sm">💡 Click on any Arabic word to see its translation instantly.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden Tooltip -->
+    <div id="dictionaryTooltip" class="hidden absolute z-50 bg-gray-900 text-white px-4 py-2 rounded-xl text-sm font-bold shadow-2xl pointer-events-none transition-opacity duration-200">
+        <span id="tooltipContent"></span>
+        <!-- Arrow -->
+        <div class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-900 rotate-45"></div>
+    </div>
+
+    <script>
+        const tooltip = document.getElementById('dictionaryTooltip');
+        const tooltipContent = document.getElementById('tooltipContent');
+        const langSelector = document.getElementById('langSelector');
+        let currentLang = 'en';
+
+        langSelector.addEventListener('change', (e) => {
+            currentLang = e.target.value;
+            hideTooltip();
+        });
+
+        document.querySelectorAll('.arabic-word').forEach(word => {
+            word.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const translation = word.getAttribute(`data-${currentLang}`);
+                showTooltip(e.currentTarget, translation);
+            });
+        });
+
+        function showTooltip(element, text) {
+            tooltipContent.textContent = text;
+            tooltip.classList.remove('hidden');
+            
+            const rect = element.getBoundingClientRect();
+            const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            // Positioning: Exactly above the word, centered horizontally
+            const tooltipX = rect.left + scrollLeft + (rect.width / 2) - (tooltip.offsetWidth / 2);
+            const tooltipY = rect.top + scrollTop - tooltip.offsetHeight - 12;
+
+            tooltip.style.left = `${tooltipX}px`;
+            tooltip.style.top = `${tooltipY}px`;
+            tooltip.style.opacity = '1';
+        }
+
+        function hideTooltip() {
+            tooltip.classList.add('hidden');
+            tooltip.style.opacity = '0';
+        }
+
+        // Close tooltip when clicking anywhere else
+        document.addEventListener('click', hideTooltip);
+        window.addEventListener('scroll', hideTooltip);
+        window.addEventListener('resize', hideTooltip);
+    </script>
+</body>
+</html>
