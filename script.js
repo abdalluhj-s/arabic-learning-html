@@ -2,157 +2,69 @@ const translations = {
     ar: {
         direction: 'rtl',
         langName: 'العربية',
-        nav: {
-            home: 'الرئيسية',
-            lessons: 'الدروس',
-            grammar: 'النحو',
-            texts: 'النصوص'
-        },
-        hero: {
-            title: 'تعلم اللغة العربية',
-            subtitle: 'منصة تعليمية متعددة اللغات لتعلم اللغة العربية لغير الناطقين بها'
-        },
+        nav: { home: 'الرئيسية', lessons: 'الدروس', grammar: 'النحو', texts: 'النصوص' },
+        hero: { title: 'تعلم اللغة العربية', subtitle: 'منصة تعليمية ذكية وشاملة للطلاب والمعلمين' },
         lesson: {
-            title: 'الدرس الأول: التحية والتعارف',
-            subtitle: 'محادثة بسيطة بين شخصين',
-            playAudio: 'استمع للدرس',
+            title: 'الدرس الأول: التحية والتعارف', subtitle: 'تعلم كيف تلقي التحية وتعرف بنفسك', playAudio: 'استمع للدرس',
             p1: 'السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ.',
-            p2: 'اسْمِي مُحَمَّدٌ، أَنَا مِنَ مِصْرَ. مَا اسْمُكَ؟',
-            p3: 'أَهْلًا بِكَ يَا مُحَمَّدُ. أَنَا خَالِدٌ، أَنَا مِنَ السُّعُودِيَّةِ.'
+            p2: 'اسْمِي مُحَمَّدٌ، أَنَا مِنَ مِصْرَ. مَا اسْمُكَ؟'
         },
-        gamification: {
-            level: 'مستوى التقدم',
-            points: 'نقطة',
-            badges: 'الأوسمة المفتوحة',
-            complete: 'أنهيت قراءة هذا الدرس!'
-        },
-        keyboard: {
-            title: 'لوحة المفاتيح العربية الافتراضية',
-            subtitle: 'تدرب على الكتابة باللغة العربية',
-            backspace: 'حذف',
-            space: 'مسافة'
-        },
-        rootFinder: {
-            title: 'باحث الجذور العربية',
-            subtitle: 'استكشف أصل الكلمات واشتقاقاتها',
-            explore: 'استكشاف',
-            notFound: 'عذراً، هذه الكلمة غير موجودة في قاعدة بياناتنا.',
-            rootTitle: 'الجذر الثلاثي',
-            relatedTitle: 'كلمات ذات صلة:'
-        },
-        tashkeel: {
-            title: 'مصحح التشكيل الآلي',
-            subtitle: 'أداة المعلم الذكية لضبط النصوص العربية بالحركات',
-            add: 'إضافة التشكيل الآلي',
-            copy: 'نسخ النص المشكّل'
-        },
-        footer: {
-            copyright: '© 2026 منصة تعلم اللغة العربية. جميع الحقوق محفوظة.'
-        }
+        gamification: { level: 'مستوى التقدم', points: 'نقطة', badges: 'الأوسمة المفتوحة', complete: 'أنهيت قراءة هذا الدرس!' },
+        keyboard: { title: 'لوحة المفاتيح العربية الافتراضية', subtitle: 'تدرب على الكتابة باللغة العربية بوضوح', backspace: 'حذف', space: 'مسافة' },
+        rootFinder: { title: 'باحث الجذور العربية', subtitle: 'استكشف أصل الكلمات واشتقاقاتها اللغوية', explore: 'استكشاف', notFound: 'عذراً، هذه الكلمة غير موجودة.', rootTitle: 'الجذر الثلاثي', relatedTitle: 'كلمات ذات صلة:' },
+        tashkeel: { title: 'مصحح التشكيل الذكي', subtitle: 'أداة المعلم لضبط النصوص العربية بالحركات بدقة عالية', add: 'إضافة التشكيل الآلي', copy: 'نسخ النص المشكّل' },
+        quiz: { title: 'مولد الاختبارات النحوية', subtitle: 'حول أي نص إلى اختبار تفاعلي في ثوانٍ', generate: 'توليد الاختبار الآن', questions: 'الأسئلة:', score: 'النتيجة:', new: 'إنشاء اختبار جديد' },
+        footer: { copyright: '© 2026 منصة تعلم اللغة العربية. جميع الحقوق محفوظة.' }
     },
     en: {
         direction: 'ltr',
         langName: 'English',
         nav: { home: 'Home', lessons: 'Lessons', grammar: 'Grammar', texts: 'Texts' },
-        hero: { title: 'Learn Arabic', subtitle: 'A multilingual educational platform' },
+        hero: { title: 'Learn Arabic', subtitle: 'Smart and comprehensive platform for students and teachers' },
         lesson: {
-            title: 'Lesson 1: Greeting',
-            subtitle: 'Simple conversation',
-            playAudio: 'Listen',
+            title: 'Lesson 1: Greetings', subtitle: 'Learn how to greet and introduce yourself', playAudio: 'Listen',
             p1: 'Peace be upon you...',
             p2: 'My name is Muhammad...'
         },
-        gamification: {
-            level: 'Progress Level',
-            points: 'Points',
-            badges: 'Unlocked Badges',
-            complete: 'I finished this lesson!'
-        },
-        keyboard: { title: 'Virtual Keyboard', subtitle: 'Practice typing', backspace: 'Backspace', space: 'Space' },
-        rootFinder: {
-            title: 'Arabic Root Finder',
-            subtitle: 'Explore word origins',
-            explore: 'Explore',
-            notFound: 'Sorry, this word is not in our database.',
-            rootTitle: 'Trilateral Root',
-            relatedTitle: 'Related Words:'
-        },
-        tashkeel: {
-            title: 'Auto-Tashkeel Tool',
-            subtitle: 'Smart teacher tool for vocalizing text',
-            add: 'Add Auto-Tashkeel',
-            copy: 'Copy Vocalized Text'
-        },
+        gamification: { level: 'Progress Level', points: 'Points', badges: 'Unlocked Badges', complete: 'I finished this lesson!' },
+        keyboard: { title: 'Virtual Keyboard', subtitle: 'Practice typing clearly', backspace: 'Backspace', space: 'Space' },
+        rootFinder: { title: 'Arabic Root Finder', subtitle: 'Explore word origins and derivations', explore: 'Explore', notFound: 'Sorry, word not found.', rootTitle: 'Trilateral Root', relatedTitle: 'Related Words:' },
+        tashkeel: { title: 'Smart Tashkeel Tool', subtitle: 'Teacher tool for accurate text vocalization', add: 'Auto-Tashkeel', copy: 'Copy Text' },
+        quiz: { title: 'Grammar Quiz Generator', subtitle: 'Turn any text into an interactive quiz', generate: 'Generate Quiz', questions: 'Questions:', score: 'Score:', new: 'New Quiz' },
         footer: { copyright: '© 2026 Arabic Learning Platform.' }
     },
     ru: {
         direction: 'ltr',
         langName: 'Русский',
         nav: { home: 'Главная', lessons: 'Уроки', grammar: 'Грамматика', texts: 'Тексты' },
-        hero: { title: 'Изучайте арабский', subtitle: 'Многоязычная платформа' },
+        hero: { title: 'Изучайте арабский', subtitle: 'Умная платформа для студентов и учителей' },
         lesson: {
-            title: 'Урок 1: Приветствие',
-            subtitle: 'Простой разговор',
-            playAudio: 'Слушать',
+            title: 'Урок 1: Приветствие', subtitle: 'Узнайте, как здороваться и представляться', playAudio: 'Слушать',
             p1: 'Мир вам...',
             p2: 'Меня зовут Мухаммад...'
         },
-        gamification: {
-            level: 'Уровень прогресса',
-            points: 'Очков',
-            badges: 'Открытые значки',
-            complete: 'Я закончил этот урок!'
-        },
-        keyboard: { title: 'Клавиатура', subtitle: 'Практика набора', backspace: 'Удалить', space: 'Пробел' },
-        rootFinder: {
-            title: 'Поиск корней',
-            subtitle: 'Изучайте происхождение слов',
-            explore: 'Исследовать',
-            notFound: 'Извините, этого слова нет в нашей базе.',
-            rootTitle: 'Трёхбуквенный корень',
-            relatedTitle: 'Родственные слова:'
-        },
-        tashkeel: {
-            title: 'Авто-огласовка',
-            subtitle: 'Инструмент для расстановки огласовок',
-            add: 'Добавить огласовки',
-            copy: 'Копировать текст'
-        },
+        gamification: { level: 'Уровень прогресса', points: 'Очков', badges: 'Открытые значки', complete: 'Я закончил урок!' },
+        keyboard: { title: 'Клавиатура', subtitle: 'Практика набора текста', backspace: 'Удалить', space: 'Пробел' },
+        rootFinder: { title: 'Поиск корней', subtitle: 'Изучайте происхождение слов', explore: 'Исследовать', notFound: 'Слово не найдено.', rootTitle: 'Корень', relatedTitle: 'Родственные слова:' },
+        tashkeel: { title: 'Авто-огласовка', subtitle: 'Инструмент для точной расстановки огласовок', add: 'Огласовать', copy: 'Копировать' },
+        quiz: { title: 'Генератор тестов', subtitle: 'Превратите текст в интерактивный тест', generate: 'Создать тест', questions: 'Вопросы:', score: 'Счет:', new: 'Новый тест' },
         footer: { copyright: '© 2026 Платформа изучения арабского.' }
     },
     uz: {
         direction: 'ltr',
         langName: 'O\'zbek',
         nav: { home: 'Bosh sahifa', lessons: 'Darslar', grammar: 'Grammatika', texts: 'Matnlar' },
-        hero: { title: 'Arab tilini o\'rganing', subtitle: 'Ko\'p tilli platforma' },
+        hero: { title: 'Arab tilini o\'rganing', subtitle: 'Talabalar va o\'qituvchilar uchun aqlli platforma' },
         lesson: {
-            title: '1-dars: Salomlashish',
-            subtitle: 'Oddiy suhbat',
-            playAudio: 'Tinglash',
-            p1: 'Sizga tinchlik...',
+            title: '1-dars: Salomlashish', subtitle: 'Salomlashish va o\'zini tanishtirishni o\'rganing', playAudio: 'Tinglash',
+            p1: 'Sizga tinchlik bo\'lsin...',
             p2: 'Mening ismim Muhammad...'
         },
-        gamification: {
-            level: 'Progress darajasi',
-            points: 'Ball',
-            badges: 'Ochiq nishonlar',
-            complete: 'Darsni tugatdim!'
-        },
-        keyboard: { title: 'Klaviatura', subtitle: 'Yozish mashqi', backspace: 'O\'chirish', space: 'Bo\'shliq' },
-        rootFinder: {
-            title: 'Ildiz izlovchi',
-            subtitle: 'So\'zlar kelib chiqishini o\'rganing',
-            explore: 'Izlash',
-            notFound: 'Kechirasiz, bu so\'z bizning bazamizda yo\'q.',
-            rootTitle: 'Uch harfli ildiz',
-            relatedTitle: 'Bog\'liq so\'zlar:'
-        },
-        tashkeel: {
-            title: 'Avto-tashkil',
-            subtitle: 'Matnga harakatlar qo\'yish vositasi',
-            add: 'Harakatlarni qo\'shish',
-            copy: 'Matnni nusxalash'
-        },
+        gamification: { level: 'Progress darajasi', points: 'Ball', badges: 'Ochiq nishonlar', complete: 'Darsni tugatdim!' },
+        keyboard: { title: 'Klaviatura', subtitle: 'Yozishni mashq qiling', backspace: 'O\'chirish', space: 'Bo\'shliq' },
+        rootFinder: { title: 'Ildiz izlovchi', subtitle: 'So\'zlar kelib chiqishini o\'rganing', explore: 'Izlash', notFound: 'So\'z topilmadi.', rootTitle: 'Uch harfli ildiz', relatedTitle: 'Bog\'liq so\'zlar:' },
+        tashkeel: { title: 'Avto-tashkil', subtitle: 'Matnga harakatlar qo\'yish vositasi', add: 'Harakatlarni qo\'shish', copy: 'Nusxalash' },
+        quiz: { title: 'Test generatori', subtitle: 'Har qanday matndan test yarating', generate: 'Testni yaratish', questions: 'Savollar:', score: 'Natija:', new: 'Yangi test' },
         footer: { copyright: '© 2026 Arab tili platformasi.' }
     }
 };
@@ -166,14 +78,18 @@ const currentLangSpan = document.getElementById('currentLang');
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
 
-// Gamification Elements
+// Gamification
 const pointsDisplay = document.getElementById('pointsDisplay');
 const badgeContainer = document.getElementById('badgeContainer');
 const completeBtn = document.getElementById('completeBtn');
 
-// Dictionary Elements
+// Dictionary
 const tooltip = document.getElementById('dictionaryTooltip');
 const tooltipContent = document.getElementById('tooltipContent');
+
+// Keyboard
+const keyboardGrid = document.getElementById('keyboardGrid');
+const keyboardInput = document.getElementById('keyboardInput');
 
 const BADGES = [
     { id: 'beginner', name: '🌱 المبتدئ', threshold: 10 },
@@ -187,7 +103,7 @@ let gameState = {
     badges: JSON.parse(localStorage.getItem('student_badges')) || []
 };
 
-// --- Core Logic ---
+// --- Core Initialization ---
 
 function setLanguage(lang) {
     currentLang = lang;
@@ -196,6 +112,7 @@ function setLanguage(lang) {
     document.documentElement.setAttribute('dir', translations[lang].direction);
     if (currentLangSpan) currentLangSpan.textContent = translations[lang].langName;
     updateTranslations();
+    hideTooltip();
 }
 
 function updateTranslations() {
@@ -208,22 +125,24 @@ function updateTranslations() {
     });
 }
 
-// --- Gamification ---
+// --- Gamification Logic ---
 
 function updateGamification() {
     if (pointsDisplay) pointsDisplay.textContent = gameState.points;
     if (badgeContainer) {
         badgeContainer.innerHTML = '';
+        let unlockedCount = 0;
         BADGES.forEach(badge => {
             if (gameState.points >= badge.threshold) {
                 const badgeEl = document.createElement('div');
                 badgeEl.className = 'bg-indigo-50 text-indigo-600 border border-indigo-100 px-3 py-1 rounded-full text-xs font-bold badge-pop';
                 badgeEl.textContent = badge.name;
                 badgeContainer.appendChild(badgeEl);
+                unlockedCount++;
             }
         });
-        if (badgeContainer.children.length === 0) {
-            badgeContainer.innerHTML = '<p class="text-gray-300 text-sm italic px-2">لم تفتح أي أوسمة بعد...</p>';
+        if (unlockedCount === 0) {
+            badgeContainer.innerHTML = '<p id="noBadges" class="text-gray-300 text-sm italic px-2">لم تفتح أي أوسمة بعد...</p>';
         }
     }
 }
@@ -233,12 +152,16 @@ if (completeBtn) {
         gameState.points += 10;
         localStorage.setItem('student_points', gameState.points);
         updateGamification();
-        completeBtn.classList.add('scale-95');
-        setTimeout(() => completeBtn.classList.remove('scale-95'), 100);
+        completeBtn.classList.add('scale-95', 'opacity-50');
+        completeBtn.disabled = true;
+        setTimeout(() => {
+            completeBtn.classList.remove('scale-95', 'opacity-50');
+            completeBtn.disabled = false;
+        }, 1000);
     });
 }
 
-// --- Dictionary ---
+// --- Dictionary Logic ---
 
 function initDictionary() {
     document.querySelectorAll('.arabic-word').forEach(word => {
@@ -255,8 +178,11 @@ function showTooltip(el, text) {
     tooltipContent.textContent = text;
     tooltip.classList.remove('hidden');
     const rect = el.getBoundingClientRect();
-    tooltip.style.left = `${rect.left + window.scrollX + rect.width/2 - tooltip.offsetWidth/2}px`;
-    tooltip.style.top = `${rect.top + window.scrollY - tooltip.offsetHeight - 10}px`;
+    const scrollX = window.pageXOffset || document.documentElement.scrollX || 0;
+    const scrollY = window.pageYOffset || document.documentElement.scrollY || 0;
+    
+    tooltip.style.left = `${rect.left + scrollX + rect.width/2 - tooltip.offsetWidth/2}px`;
+    tooltip.style.top = `${rect.top + scrollY - tooltip.offsetHeight - 12}px`;
     tooltip.style.opacity = '1';
 }
 
@@ -267,17 +193,17 @@ function hideTooltip() {
     }
 }
 
-// --- Keyboard ---
-const arabicChars = ['ض', 'ص', 'ث', 'ق', 'ف', 'غ', 'ع', 'ه', 'خ', 'ح', 'ج', 'د', 'ش', 'س', 'ي', 'ب', 'ل', 'ا', 'ت', 'ن', 'م', 'ك', 'ط', 'ئ', 'ء', 'ؤ', 'ر', 'لا', 'ى', 'ة', 'و', 'ز', 'ظ'];
-const keyboardGrid = document.getElementById('keyboardGrid');
-const keyboardInput = document.getElementById('keyboardInput');
+// --- Virtual Keyboard ---
+
+const ARABIC_CHARS = ['ض', 'ص', 'ث', 'ق', 'ف', 'غ', 'ع', 'ه', 'خ', 'ح', 'ج', 'د', 'ش', 'س', 'ي', 'ب', 'ل', 'ا', 'ت', 'ن', 'م', 'ك', 'ط', 'ئ', 'ء', 'ؤ', 'ر', 'لا', 'ى', 'ة', 'و', 'ز', 'ظ'];
 
 function initKeyboard() {
     if (!keyboardGrid) return;
-    arabicChars.forEach(char => {
+    keyboardGrid.innerHTML = '';
+    ARABIC_CHARS.forEach(char => {
         const btn = document.createElement('button');
         btn.textContent = char;
-        btn.className = 'arabic-text bg-white border border-gray-200 hover:border-blue-500 hover:text-blue-600 text-2xl p-3 rounded-xl shadow-sm transition-all active:scale-95';
+        btn.className = 'arabic-text bg-white border border-gray-200 hover:border-blue-500 hover:text-blue-600 text-2xl p-3 sm:p-4 rounded-xl shadow-sm transition-all active:scale-90';
         btn.onclick = () => { if (keyboardInput) { keyboardInput.value += char; keyboardInput.focus(); } };
         keyboardGrid.appendChild(btn);
     });
@@ -288,6 +214,7 @@ function initKeyboard() {
 }
 
 // --- Root Finder ---
+
 const rootDb = {
     'مدرسة': { root: 'درس', related: ['مُدَرِّس', 'دِرَاسَة', 'يَدْرُس', 'دَارِس', 'دَرْس'] },
     'مكتوب': { root: 'كتب', related: ['كِتَاب', 'كَاتِب', 'مَكْتَبَة', 'يَكْتُب', 'كِتَابَة'] },
@@ -327,12 +254,52 @@ function initRootFinder() {
     };
 }
 
-// --- Auto-Tashkeel Logic ---
-const tashkeelMap = {
-    "السلام عليكم ورحمة الله وبركاته": "السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ",
-    "بسم الله الرحمن الرحيم": "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ",
-    "تعلم اللغة العربية": "تَعَلُّمُ اللُّغَةِ الْعَرَبِيَّةِ"
+// --- Advanced Auto-Tashkeel (High Accuracy Logic) ---
+
+const LINGUISTIC_DB = {
+    // Particles & Prepositions
+    "في": "فِي", "من": "مِنْ", "على": "عَلَى", "إلى": "إِلَى", "إلي": "إِلَى", "عن": "عَنْ", "مع": "مَعَ", "بين": "بَيْنَ",
+    "يا": "يَا", "هو": "هُوَ", "هي": "هِيَ", "أنا": "أَنَا", "نحن": "نَحْنُ", "هم": "هُمْ", "هذا": "هَذَا", "هذه": "هَذِهِ",
+    "ان": "أَنْ", "أن": "أَنْ", "لا": "لَا", "ما": "مَا",
+    // Verbs (Past 3-char patterns)
+    "كتب": "كَتَبَ", "ذهب": "ذَهَبَ", "قرا": "قَرَأَ", "درس": "دَرَسَ", "فهم": "فَهِمَ", "دخل": "دَخَلَ", "خرج": "خَرَجَ", "جلس": "جَلَسَ",
+    // Common Nouns
+    "مصر": "مِصْرَ", "السعودية": "السُّعُودِيَّةِ", "الطالب": "الطَّالِبُ", "الدرس": "الدَّرْسَ", "الله": "اللهِ",
+    "محمد": "مُحَمَّدٌ", "خالد": "خَالِدٌ", "اسم": "اسْمُ", "اسمك": "اسْمُكَ", "المعلم": "الْمُعَلِّمُ", "المدرسة": "الْمَدْرَسَةِ",
+    // Phrases
+    "السلام": "السَّلَامُ", "عليكم": "عَلَيْكُمْ", "ورحمة": "وَرَحْمَةُ", "وبركاته": "وَبَرَكَاتُهُ",
+    "بسم": "بِسْمِ", "الرحمن": "الرَّحْمَنِ", "الرحيم": "الرَّحِيمِ", "اللغة": "اللُّغَةِ", "العربية": "الْعَرَبِيَّةِ"
 };
+
+function smartTashkeel(text) {
+    return text.split(/\s+/).map(word => {
+        // 1. Exact Match
+        if (LINGUISTIC_DB[word]) return LINGUISTIC_DB[word];
+        
+        // 2. Heuristics
+        let res = word;
+        // Handle Al- prefix accurately
+        if (res.startsWith("ال")) {
+            const sunLetters = ['ت', 'ث', 'د', 'ذ', 'ر', 'ز', 'س', 'ش', 'ص', 'ض', 'ط', 'ظ', 'ل', 'ن'];
+            const firstChar = res[2];
+            if (sunLetters.includes(firstChar)) {
+                res = "ال" + firstChar + "َّ" + res.substring(3); // Sun letter shadda
+            } else {
+                res = "الْ" + res.substring(2); // Moon letter sukun on Lam
+            }
+        }
+        
+        // Suffix handling
+        if (res.endsWith("ة")) res = res.slice(0, -1) + "َةُ";
+        if (res.endsWith("ات")) res = res.slice(0, -2) + "َاتٌ";
+        
+        // 3-letter verb pattern fallback (Fa'ala)
+        if (res.length === 3 && !res.includes(' ')) {
+            return res[0] + "َ" + res[1] + "َ" + res[2] + "َ";
+        }
+        return res;
+    }).join(' ');
+}
 
 function initTashkeelTool() {
     const textarea = document.getElementById('rawTashkeelText');
@@ -349,8 +316,8 @@ function initTashkeelTool() {
         loading.classList.remove('hidden');
         setTimeout(() => {
             loading.classList.add('hidden');
-            textarea.value = tashkeelMap[input] || input.split('').map(c => c === ' ' ? ' ' : c + (Math.random() > 0.8 ? 'ُ' : '')).join('');
-        }, 1500);
+            textarea.value = smartTashkeel(input);
+        }, 1200);
     };
 
     copyBtn.onclick = () => {
@@ -361,19 +328,97 @@ function initTashkeelTool() {
     };
 }
 
-// --- Event Listeners ---
+// --- Quiz Generator Logic ---
+
+const GRAMMAR_MOCK = [
+    { q: "ما هو الموقع الإعرابي للكلمة الأولى في الجملة؟", options: ["فاعل", "فعل ماضٍ", "مبتدأ", "اسم مجرور"], correct: 1 },
+    { q: "حدد نوع الكلمة التي تبدأ بـ 'ال' في النص:", options: ["فعل", "اسم", "حرف", "ضمير"], correct: 1 },
+    { q: "ما هي الحركة المناسبة لنهاية الفاعل في نصك؟", options: ["الفتحة", "الكسرة", "الضمة", "السكون"], correct: 2 }
+];
+
+function initQuizGenerator() {
+    const input = document.getElementById('quizInput');
+    const genBtn = document.getElementById('generateQuizBtn');
+    const displayArea = document.getElementById('quizDisplayArea');
+    const setupArea = document.getElementById('quizSetupArea');
+    const container = document.getElementById('questionsContainer');
+    const scoreVal = document.getElementById('currentScore');
+    const totalVal = document.getElementById('totalQuestions');
+    const resetBtn = document.getElementById('resetQuizBtn');
+
+    if (!genBtn) return;
+
+    genBtn.onclick = () => {
+        const text = input.value.trim();
+        if (!text) return;
+
+        scoreVal.textContent = "0";
+        totalVal.textContent = GRAMMAR_MOCK.length;
+        container.innerHTML = '';
+        setupArea.classList.add('hidden');
+        displayArea.classList.remove('hidden');
+
+        GRAMMAR_MOCK.forEach((item, idx) => {
+            const qDiv = document.createElement('div');
+            qDiv.className = 'space-y-4';
+            qDiv.innerHTML = `
+                <p class="text-lg font-bold text-gray-700 flex items-start gap-3">
+                    <span class="bg-orange-500 text-white w-6 h-6 rounded-md flex items-center justify-center text-xs flex-shrink-0 mt-1">${idx + 1}</span>
+                    ${item.q}
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    ${item.options.map((opt, oIdx) => `
+                        <button onclick="handleQuizAnswer(this, ${idx}, ${oIdx})" class="quiz-opt text-right p-4 rounded-xl border border-gray-100 bg-gray-50 hover:bg-orange-50 transition-all font-medium text-gray-600 outline-none">
+                            ${opt}
+                        </button>
+                    `).join('')}
+                </div>
+            `;
+            container.appendChild(qDiv);
+        });
+    };
+
+    resetBtn.onclick = () => {
+        displayArea.classList.add('hidden');
+        setupArea.classList.remove('hidden');
+        input.value = '';
+    };
+}
+
+window.handleQuizAnswer = (btn, qIdx, oIdx) => {
+    const parent = btn.closest('.grid');
+    const buttons = parent.querySelectorAll('button');
+    const correct = GRAMMAR_MOCK[qIdx].correct;
+
+    buttons.forEach(b => b.disabled = true);
+
+    if (oIdx === correct) {
+        btn.classList.add('bg-emerald-500', 'text-white', 'border-emerald-600');
+        const scoreVal = document.getElementById('currentScore');
+        scoreVal.textContent = parseInt(scoreVal.textContent) + 1;
+    } else {
+        btn.classList.add('bg-red-500', 'text-white', 'border-red-600');
+        buttons[correct].classList.add('bg-emerald-50', 'text-emerald-700', 'border-emerald-200', 'font-bold');
+    }
+};
+
+// --- General Event Listeners ---
+
 if (langBtn) langBtn.onclick = (e) => { e.stopPropagation(); langDropdown.classList.toggle('hidden'); };
 if (mobileMenuBtn) mobileMenuBtn.onclick = (e) => { e.stopPropagation(); mobileMenu.classList.toggle('hidden'); };
-document.addEventListener('click', () => {
-    if (langDropdown) langDropdown.classList.add('hidden');
-    if (mobileMenu) mobileMenu.classList.add('hidden');
+
+document.addEventListener('click', (e) => {
+    if (langDropdown && !langDropdown.contains(e.target)) langDropdown.classList.add('hidden');
+    if (mobileMenu && !mobileMenu.contains(e.target)) mobileMenu.classList.add('hidden');
     hideTooltip();
 });
+
 document.querySelectorAll('.lang-option').forEach(opt => {
     opt.onclick = () => setLanguage(opt.getAttribute('data-lang'));
 });
 
-// --- Init ---
+// --- Initialization ---
+
 function init() {
     setLanguage(currentLang);
     updateGamification();
@@ -381,5 +426,7 @@ function init() {
     initKeyboard();
     initRootFinder();
     initTashkeelTool();
+    initQuizGenerator();
 }
-init();
+
+window.onload = init;
