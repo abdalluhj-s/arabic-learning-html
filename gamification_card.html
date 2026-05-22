@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arabic Learning Progress</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap');
+        body { font-family: 'Cairo', sans-serif; }
+        .badge-pop { animation: pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        @keyframes pop {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen flex items-center justify-center p-6">
+
+    <!-- Gamification Card -->
+    <div class="max-w-md w-full bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-white transition-all duration-500 hover:shadow-indigo-200">
+        <!-- Header Gradient Section -->
+        <div class="bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 p-10 text-center relative overflow-hidden">
+            <!-- Decorative Circles -->
+            <div class="absolute -top-10 -right-10 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+            <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-indigo-900/20 rounded-full blur-2xl"></div>
+            
+            <h3 class="text-white/80 font-bold uppercase tracking-[0.2em] text-xs mb-4">مستوى التقدم</h3>
+            <div class="flex items-center justify-center gap-3">
+                <span id="pointsDisplay" class="text-7xl font-extrabold text-white drop-shadow-lg tracking-tighter">0</span>
+                <span class="text-white/90 font-bold text-xl mt-4">نقطة</span>
+            </div>
+        </div>
+
+        <!-- Content Section -->
+        <div class="p-8">
+            <div class="mb-8">
+                <h4 class="text-gray-400 font-bold text-xs uppercase tracking-wider mb-4 px-2">الأوسمة المفتوحة</h4>
+                <div id="badgeContainer" class="flex flex-wrap gap-3 min-h-[50px]">
+                    <!-- Badges injected here -->
+                    <p id="noBadges" class="text-gray-300 text-sm italic px-2">لم تفتح أي أوسمة بعد...</p>
+                </div>
+            </div>
+
+            <!-- Action Button -->
+            <button id="completeBtn" class="w-full group relative flex items-center justify-center gap-3 bg-slate-900 hover:bg-indigo-600 text-white font-extrabold py-5 rounded-2xl transition-all duration-300 active:scale-95 shadow-xl hover:shadow-indigo-500/40">
+                <span class="text-lg">أنهيت قراءة هذا الدرس!</span>
+                <span class="text-2xl group-hover:rotate-12 transition-transform">🎉</span>
+            </button>
+            
+            <p class="text-center text-gray-400 text-xs mt-6">احصل على 10 نقاط عند إنهاء كل درس</p>
+        </div>
+    </div>
+
+    <script>
+        const pointsDisplay = document.getElementById('pointsDisplay');
+        const badgeContainer = document.getElementById('badgeContainer');
+        const completeBtn = document.getElementById('completeBtn');
+        const noBadgesMsg = document.getElementById('noBadges');
+
+        const BADGES = [
+            { id: 'beginner', name: '🌱 المبتدئ', threshold: 10 },
+            { id: 'reader', name: '📖 القارئ', threshold: 30 },
+            { id: 'hero', name: '🔥 البطل', threshold: 50 },
+            { id: 'master', name: '👑 الأستاذ', threshold: 100 },
+            { id: 'legend', name: '💎 الأسطورة', threshold: 200 }
+        ];
+
+        let state = {
+            points: parseInt(localStorage.getItem('student_points')) || 0,
+            unlockedBadges: JSON.parse(localStorage.getItem('student_badges')) || []
+        };
+
+        function init() {
+            renderUI();
+        }
+
+        function renderUI() {
+            // Update points
+            pointsDisplay.innerText = state.points;
+
+            // Update Badges
+            badgeContainer.innerHTML = '';
+            let currentUnlocked = [];
+            
+            BADGES.forEach(badge => {
+                if (state.points >= badge.threshold) {
+                    currentUnlocked.push(badge.id);
+                    const isNew = !state.unlockedBadges.includes(badge.id);
+                    
+                    const badgeEl = document.createElement('div');
+                    badgeEl.className = `bg-indigo-50 text-indigo-600 border border-indigo-100 px-4 py-2 rounded-full text-sm font-bold shadow-sm ${isNew ? 'badge-pop' : ''}`;
+                    badgeEl.innerText = badge.name;
+                    badgeContainer.appendChild(badgeEl);
+                }
+            });
+
+            if (currentUnlocked.length > 0) {
+                state.unlockedBadges = currentUnlocked;
+                localStorage.setItem('student_badges', JSON.stringify(state.unlockedBadges));
+            } else {
+                badgeContainer.appendChild(noBadgesMsg);
+            }
+        }
+
+        completeBtn.addEventListener('click', () => {
+            state.points += 10;
+            localStorage.setItem('student_points', state.points);
+            
+            // Trigger animation
+            pointsDisplay.classList.add('scale-110', 'text-yellow-300');
+            setTimeout(() => {
+                pointsDisplay.classList.remove('scale-110', 'text-yellow-300');
+            }, 200);
+
+            renderUI();
+        });
+
+        init();
+    </script>
+</body>
+</html>
