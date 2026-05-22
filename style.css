@@ -27,123 +27,6 @@ body {
     padding: 0 20px;
 }
 
-/* Navbar */
-.navbar {
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--glass-border);
-    padding: 1rem 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.navbar .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-}
-
-.nav-links a {
-    color: var(--white);
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s;
-}
-
-.nav-links a:hover {
-    color: rgba(255, 255, 255, 0.8);
-}
-
-/* Language Switcher */
-.language-switcher {
-    position: relative;
-}
-
-.lang-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    color: var(--white);
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.lang-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.arrow-icon {
-    width: 16px;
-    height: 16px;
-    transition: transform 0.3s;
-}
-
-.lang-btn:hover .arrow-icon {
-    transform: rotate(180deg);
-}
-
-.lang-dropdown {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    margin-top: 0.5rem;
-    background: var(--white);
-    border-radius: 0.5rem;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.3s;
-    min-width: 150px;
-}
-
-.lang-dropdown.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.lang-option {
-    display: block;
-    width: 100%;
-    padding: 0.75rem 1rem;
-    background: none;
-    border: none;
-    text-align: left;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.lang-option:hover {
-    background: #f0f0f0;
-}
-
-.lang-option.active {
-    background: #e0e0e0;
-    font-weight: 600;
-}
-
-/* RTL Support for Language Dropdown */
-[dir="rtl"] .lang-dropdown {
-    right: auto;
-    left: 0;
-}
-
-[dir="rtl"] .lang-option {
-    text-align: right;
-}
-
 /* Hero Section */
 .hero {
     padding: 4rem 0;
@@ -233,19 +116,7 @@ body {
     text-align: center;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
-    .navbar .container {
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .nav-links {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1rem;
-    }
-
     .hero-content h1 {
         font-size: 2rem;
     }
@@ -264,11 +135,6 @@ body {
 }
 
 @media (max-width: 480px) {
-    .nav-links {
-        flex-direction: column;
-        align-items: center;
-    }
-
     .hero-content h1 {
         font-size: 1.5rem;
     }

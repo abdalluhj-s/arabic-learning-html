@@ -1,4 +1,3 @@
-// Translation data for 4 languages
 const translations = {
     ar: {
         direction: 'rtl',
@@ -6,8 +5,8 @@ const translations = {
         nav: {
             home: 'الرئيسية',
             lessons: 'الدروس',
-            about: 'عن المنصة',
-            contact: 'اتصل بنا'
+            grammar: 'النحو',
+            texts: 'النصوص'
         },
         hero: {
             title: 'تعلم اللغة العربية',
@@ -36,8 +35,8 @@ const translations = {
         nav: {
             home: 'Home',
             lessons: 'Lessons',
-            about: 'About',
-            contact: 'Contact'
+            grammar: 'Grammar',
+            texts: 'Texts'
         },
         hero: {
             title: 'Learn Arabic',
@@ -66,8 +65,8 @@ const translations = {
         nav: {
             home: 'Главная',
             lessons: 'Уроки',
-            about: 'О нас',
-            contact: 'Контакты'
+            grammar: 'Грамматика',
+            texts: 'Тексты'
         },
         hero: {
             title: 'Изучайте арабский язык',
@@ -96,8 +95,8 @@ const translations = {
         nav: {
             home: 'Bosh sahifa',
             lessons: 'Darslar',
-            about: 'Biz haqimizda',
-            contact: 'Aloqa'
+            grammar: 'Grammatika',
+            texts: 'Matnlar'
         },
         hero: {
             title: 'Arab tilini o\'rganing',
@@ -125,20 +124,30 @@ const translations = {
 // Default language
 let currentLang = localStorage.getItem('language') || 'ar';
 
-// Language switcher functionality
+// DOM Elements
 const langBtn = document.getElementById('langBtn');
 const langDropdown = document.getElementById('langDropdown');
 const currentLangSpan = document.getElementById('currentLang');
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
 
-// Toggle dropdown
+// Language Dropdown Toggle
 langBtn.addEventListener('click', () => {
-    langDropdown.classList.toggle('show');
+    langDropdown.classList.toggle('hidden');
 });
 
-// Close dropdown when clicking outside
+// Mobile Menu Toggle
+mobileMenuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+});
+
+// Close dropdowns when clicking outside
 document.addEventListener('click', (e) => {
-    if (!langBtn.contains(e.target) && !langDropdown.contains(e.target)) {
-        langDropdown.classList.remove('show');
+    if (langBtn && !langBtn.contains(e.target) && langDropdown && !langDropdown.contains(e.target)) {
+        langDropdown.classList.add('hidden');
+    }
+    if (mobileMenuBtn && !mobileMenuBtn.contains(e.target) && mobileMenu && !mobileMenu.contains(e.target)) {
+        mobileMenu.classList.add('hidden');
     }
 });
 
@@ -147,7 +156,7 @@ document.querySelectorAll('.lang-option').forEach(option => {
     option.addEventListener('click', () => {
         const lang = option.getAttribute('data-lang');
         setLanguage(lang);
-        langDropdown.classList.remove('show');
+        langDropdown.classList.add('hidden');
     });
 });
 
@@ -167,11 +176,20 @@ function setLanguage(lang) {
     // Update all translatable elements
     updateTranslations();
     
-    // Update active state in dropdown
+    // Update active state in dropdown and alignment
+    const isRtl = translations[lang].direction === 'rtl';
     document.querySelectorAll('.lang-option').forEach(option => {
-        option.classList.remove('active');
+        option.classList.remove('bg-gray-100', 'font-bold');
         if (option.getAttribute('data-lang') === lang) {
-            option.classList.add('active');
+            option.classList.add('bg-gray-100', 'font-bold');
+        }
+        // Update alignment based on direction
+        if (isRtl) {
+            option.classList.remove('text-left');
+            option.classList.add('text-right');
+        } else {
+            option.classList.remove('text-right');
+            option.classList.add('text-left');
         }
     });
 }
@@ -186,7 +204,7 @@ function updateTranslations() {
         let value = translations[currentLang];
         
         keys.forEach(k => {
-            value = value[k];
+            if (value) value = value[k];
         });
         
         if (value) {
