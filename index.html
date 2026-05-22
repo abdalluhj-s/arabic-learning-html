@@ -7,20 +7,19 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Amiri:wght@400;700&display=swap');
-        body {
-            font-family: 'Cairo', sans-serif;
-        }
-        .arabic-text {
-            font-family: 'Amiri', serif;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Amiri:wght@400;700&display=swap');
+        body { font-family: 'Cairo', sans-serif; }
+        .arabic-text { font-family: 'Amiri', serif; }
+        .arabic-word { cursor: pointer; transition: all 0.2s; border-bottom: 2px dashed transparent; }
+        .arabic-word:hover { background-color: #eff6ff; border-bottom-color: #3b82f6; color: #2563eb; }
+        .badge-pop { animation: pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        @keyframes pop { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
     </style>
 </head>
 <body class="bg-gray-50">
     <nav class="bg-white shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
-                <!-- Logo and Nav Links -->
                 <div class="flex items-center">
                     <div class="flex-shrink-0 flex items-center">
                         <span class="text-2xl font-bold text-blue-600">Arabiya</span>
@@ -32,34 +31,26 @@
                         <a href="#" data-i18n="nav.texts" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">النصوص</a>
                     </div>
                 </div>
-
-                <!-- Language Dropdown and Mobile Menu Button -->
                 <div class="flex items-center">
                     <div class="relative inline-block text-left">
-                        <div>
-                            <button type="button" id="langBtn" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" aria-expanded="true" aria-haspopup="true">
-                                <span id="currentLang">العربية</span>
-                                <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </button>
-                        </div>
-
-                        <div id="langDropdown" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="langBtn">
-                            <div class="py-1" role="none">
-                                <button data-lang="ar" class="lang-option text-gray-700 block w-full text-right px-4 py-2 text-sm hover:bg-gray-100" role="menuitem">العربية</button>
-                                <button data-lang="en" class="lang-option text-gray-700 block w-full text-right px-4 py-2 text-sm hover:bg-gray-100" role="menuitem">English</button>
-                                <button data-lang="ru" class="lang-option text-gray-700 block w-full text-right px-4 py-2 text-sm hover:bg-gray-100" role="menuitem">Русский</button>
-                                <button data-lang="uz" class="lang-option text-gray-700 block w-full text-right px-4 py-2 text-sm hover:bg-gray-100" role="menuitem">O'zbek</button>
+                        <button type="button" id="langBtn" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none">
+                            <span id="currentLang">العربية</span>
+                            <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <div id="langDropdown" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            <div class="py-1">
+                                <button data-lang="ar" class="lang-option text-gray-700 block w-full text-right px-4 py-2 text-sm hover:bg-gray-100">العربية</button>
+                                <button data-lang="en" class="lang-option text-gray-700 block w-full text-right px-4 py-2 text-sm hover:bg-gray-100">English</button>
+                                <button data-lang="ru" class="lang-option text-gray-700 block w-full text-right px-4 py-2 text-sm hover:bg-gray-100">Русский</button>
+                                <button data-lang="uz" class="lang-option text-gray-700 block w-full text-right px-4 py-2 text-sm hover:bg-gray-100">O'zbek</button>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Mobile menu button -->
                     <div class="mr-2 flex items-center md:hidden">
-                        <button id="mobileMenuBtn" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500" aria-expanded="false">
-                            <span class="sr-only">Open main menu</span>
-                            <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <button id="mobileMenuBtn" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100">
+                            <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                             </svg>
                         </button>
@@ -67,8 +58,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Mobile menu, show/hide based on menu state. -->
         <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-200">
             <div class="px-2 pt-2 pb-3 space-y-1">
                 <a href="#" data-i18n="nav.home" class="text-gray-700 hover:bg-gray-50 block px-3 py-2 rounded-md text-base font-medium">الرئيسية</a>
@@ -81,6 +70,26 @@
 
     <main class="py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Progress & Gamification Section -->
+            <div class="max-w-md mx-auto mb-16">
+                <div class="bg-white rounded-[2.5rem] shadow-xl overflow-hidden border border-gray-100">
+                    <div class="bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 p-8 text-center relative overflow-hidden">
+                        <div class="absolute -top-10 -right-10 w-24 h-24 bg-white/10 rounded-full blur-2xl"></div>
+                        <h3 data-i18n="gamification.level" class="text-white/80 font-bold uppercase tracking-widest text-xs mb-2">مستوى التقدم</h3>
+                        <div class="flex items-center justify-center gap-2">
+                            <span id="pointsDisplay" class="text-6xl font-extrabold text-white drop-shadow-lg">0</span>
+                            <span data-i18n="gamification.points" class="text-white/90 font-bold text-lg mt-4">نقطة</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 data-i18n="gamification.badges" class="text-gray-400 font-bold text-xs uppercase mb-3">الأوسمة المفتوحة</h4>
+                        <div id="badgeContainer" class="flex flex-wrap gap-2 min-h-[40px]">
+                            <p id="noBadges" class="text-gray-300 text-sm italic px-2">لم تفتح أي أوسمة بعد...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="text-center mb-16">
                 <h1 data-i18n="hero.title" class="text-4xl font-extrabold text-gray-900 sm:text-5xl md:text-6xl mb-4">تعلم اللغة العربية</h1>
                 <p data-i18n="hero.subtitle" class="text-xl text-gray-500 max-w-3xl mx-auto">منصة تعليمية متعددة اللغات لتعلم اللغة العربية لغير الناطقين بها</p>
@@ -89,14 +98,11 @@
             <!-- Lesson Viewer Section -->
             <section class="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden mb-20 border border-gray-100">
                 <div class="p-6 sm:p-10">
-                    <!-- Lesson Header -->
                     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-10 pb-8 border-b border-gray-100">
                         <div>
                             <h2 data-i18n="lesson.title" class="text-3xl font-bold text-gray-900 mb-2">الدرس الأول: التحية والتعارف</h2>
                             <p data-i18n="lesson.subtitle" class="text-gray-500">محادثة بسيطة بين شخصين</p>
                         </div>
-                        
-                        <!-- Audio Player Button -->
                         <div class="mt-6 sm:mt-0">
                             <button class="group flex items-center gap-4 bg-blue-50 hover:bg-blue-100 text-blue-600 px-6 py-4 rounded-2xl transition-all duration-300">
                                 <div class="w-12 h-12 flex items-center justify-center bg-blue-600 group-hover:bg-blue-700 text-white rounded-full shadow-lg">
@@ -112,40 +118,44 @@
                         </div>
                     </div>
 
-                    <!-- Lesson Content -->
+                    <!-- Lesson Content with Interactive Dictionary -->
                     <div class="space-y-12">
-                        <!-- Paragraph 1 -->
                         <div class="lesson-item border-b border-gray-50 pb-8 last:border-0">
                             <p class="arabic-text text-4xl sm:text-5xl text-gray-800 mb-6 leading-[2] sm:leading-[2.5] text-right" dir="rtl">
-                                السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ.
+                                <span class="arabic-word" data-en="The peace" data-ru="Мир" data-uz="Tinchlik">السَّلَامُ</span>
+                                <span class="arabic-word" data-en="upon you" data-ru="вам" data-uz="sizga">عَلَيْكُمْ</span>
+                                <span class="arabic-word" data-en="and mercy" data-ru="и милость" data-uz="va rahmat">وَرَحْمَةُ</span>
+                                <span class="arabic-word" data-en="Allah" data-ru="Аллаха" data-uz="Allohning">اللهِ</span>
+                                <span class="arabic-word" data-en="and His blessings" data-ru="и Его благословение" data-uz="va barakasi">وَبَرَكَاتُهُ.</span>
                             </p>
-                            <p data-i18n="lesson.p1" class="text-lg sm:text-xl text-gray-400 font-medium italic">
-                                Peace be upon you, and the mercy of Allah and His blessings.
-                            </p>
+                            <p data-i18n="lesson.p1" class="text-lg sm:text-xl text-gray-400 font-medium italic">Peace be upon you...</p>
                         </div>
-
-                        <!-- Paragraph 2 -->
                         <div class="lesson-item border-b border-gray-50 pb-8 last:border-0">
                             <p class="arabic-text text-4xl sm:text-5xl text-gray-800 mb-6 leading-[2] sm:leading-[2.5] text-right" dir="rtl">
-                                اسْمِي مُحَمَّدٌ، أَنَا مِنَ مِصْرَ. مَا اسْمُكَ؟
+                                <span class="arabic-word" data-en="My name" data-ru="Меня зовут" data-uz="Mening ismim">اسْمِي</span>
+                                <span class="arabic-word" data-en="Muhammad" data-ru="Мухаммад" data-uz="Muhammad">مُحَمَّدٌ،</span>
+                                <span class="arabic-word" data-en="I" data-ru="Я" data-uz="Men">أَنَا</span>
+                                <span class="arabic-word" data-en="from" data-ru="из" data-uz="dan">مِنَ</span>
+                                <span class="arabic-word" data-en="Egypt" data-ru="Египта" data-uz="Misr">مِصْرَ.</span>
+                                <span class="arabic-word" data-en="What" data-ru="Как" data-uz="Nima">مَا</span>
+                                <span class="arabic-word" data-en="your name?" data-ru="твое имя?" data-uz="ismingiz?">اسْمُكَ؟</span>
                             </p>
-                            <p data-i18n="lesson.p2" class="text-lg sm:text-xl text-gray-400 font-medium italic">
-                                My name is Muhammad, I am from Egypt. What is your name?
-                            </p>
-                        </div>
-
-                        <!-- Paragraph 3 -->
-                        <div class="lesson-item border-b border-gray-50 pb-8 last:border-0">
-                            <p class="arabic-text text-4xl sm:text-5xl text-gray-800 mb-6 leading-[2] sm:leading-[2.5] text-right" dir="rtl">
-                                أَهْلًا بِكَ يَا مُحَمَّدُ. أَنَا خَالِدٌ، أَنَا مِنَ السُّعُودِيَّةِ.
-                            </p>
-                            <p data-i18n="lesson.p3" class="text-lg sm:text-xl text-gray-400 font-medium italic">
-                                Welcome, Muhammad. I am Khalid, I am from Saudi Arabia.
-                            </p>
+                            <p data-i18n="lesson.p2" class="text-lg sm:text-xl text-gray-400 font-medium italic">My name is Muhammad...</p>
                         </div>
                     </div>
+                    
+                    <button id="completeBtn" class="w-full mt-10 group flex items-center justify-center gap-3 bg-slate-900 hover:bg-indigo-600 text-white font-bold py-5 rounded-2xl transition-all duration-300">
+                        <span data-i18n="gamification.complete">أنهيت قراءة هذا الدرس!</span>
+                        <span>🎉</span>
+                    </button>
                 </div>
             </section>
+
+            <!-- Dictionary Tooltip -->
+            <div id="dictionaryTooltip" class="hidden absolute z-50 bg-gray-900 text-white px-4 py-2 rounded-xl text-sm font-bold shadow-2xl pointer-events-none transition-opacity duration-200">
+                <span id="tooltipContent"></span>
+                <div class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-900 rotate-45"></div>
+            </div>
 
             <!-- Virtual Arabic Keyboard Section -->
             <section class="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden mb-20 border border-gray-100">
@@ -154,28 +164,15 @@
                         <h2 data-i18n="keyboard.title" class="text-2xl font-bold text-gray-900 mb-2">لوحة المفاتيح العربية الافتراضية</h2>
                         <p data-i18n="keyboard.subtitle" class="text-gray-500">تدرب على الكتابة باللغة العربية</p>
                     </div>
-
-                    <!-- Keyboard Input Field -->
                     <div class="mb-8">
-                        <input type="text" id="keyboardInput" dir="rtl" 
-                            class="arabic-text w-full p-6 text-4xl text-gray-800 border-2 border-blue-100 rounded-2xl focus:border-blue-500 focus:outline-none shadow-inner bg-gray-50"
-                            placeholder="اكتب هنا...">
+                        <input type="text" id="keyboardInput" dir="rtl" class="arabic-text w-full p-6 text-4xl text-gray-800 border-2 border-blue-100 rounded-2xl focus:border-blue-500 focus:outline-none shadow-inner bg-gray-50" placeholder="اكتب هنا...">
                     </div>
-
-                    <!-- Keyboard Grid -->
-                    <div class="grid grid-cols-7 sm:grid-cols-10 gap-2 sm:gap-3" dir="rtl" id="keyboardGrid">
-                        <!-- Keys will be generated by JS -->
-                    </div>
-
-                    <!-- Special Keys -->
+                    <div class="grid grid-cols-7 sm:grid-cols-10 gap-2 sm:gap-3" dir="rtl" id="keyboardGrid"></div>
                     <div class="mt-4 flex gap-3" dir="rtl">
-                        <button id="keyBackspace" class="flex-1 bg-red-50 hover:bg-red-100 text-red-600 font-bold py-4 rounded-xl transition-colors flex items-center justify-center gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2M3 12l6.414 6.414A2 2 0 0010.828 19H19a2 2 0 002-2V7a2 2 0 00-2-2h-8.172a2 2 0 00-1.414.586L3 12z" />
-                            </svg>
+                        <button id="keyBackspace" class="flex-1 bg-red-50 hover:bg-red-100 text-red-600 font-bold py-4 rounded-xl flex items-center justify-center gap-2">
                             <span data-i18n="keyboard.backspace">حذف</span>
                         </button>
-                        <button id="keySpace" class="flex-[2] bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition-colors">
+                        <button id="keySpace" class="flex-[2] bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl">
                             <span data-i18n="keyboard.space">مسافة</span>
                         </button>
                     </div>
@@ -191,14 +188,6 @@
                 <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-lg transition-shadow border border-gray-100">
                     <h3 data-i18n="features.native" class="text-xl font-bold text-gray-900 mb-3">معلمين ناطقين بالعربية</h3>
                     <p data-i18n="features.nativeDesc" class="text-gray-500">تعلم من معلمين ناطقين بالعربية</p>
-                </div>
-                <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-lg transition-shadow border border-gray-100">
-                    <h3 data-i18n="features.flexible" class="text-xl font-bold text-gray-900 mb-3">تعلم بمرونة</h3>
-                    <p data-i18n="features.flexibleDesc" class="text-gray-500">تعلم بالسرعة التي تناسبك</p>
-                </div>
-                <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-lg transition-shadow border border-gray-100">
-                    <h3 data-i18n="features.certificate" class="text-xl font-bold text-gray-900 mb-3">شهادات معتمدة</h3>
-                    <p data-i18n="features.certificateDesc" class="text-gray-500">احصل على شهادات معتمدة</p>
                 </div>
             </div>
         </div>
