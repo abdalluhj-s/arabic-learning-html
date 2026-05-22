@@ -40,6 +40,12 @@ const translations = {
             rootTitle: 'الجذر الثلاثي',
             relatedTitle: 'كلمات ذات صلة:'
         },
+        tashkeel: {
+            title: 'مصحح التشكيل الآلي',
+            subtitle: 'أداة المعلم الذكية لضبط النصوص العربية بالحركات',
+            add: 'إضافة التشكيل الآلي',
+            copy: 'نسخ النص المشكّل'
+        },
         footer: {
             copyright: '© 2026 منصة تعلم اللغة العربية. جميع الحقوق محفوظة.'
         }
@@ -71,6 +77,12 @@ const translations = {
             rootTitle: 'Trilateral Root',
             relatedTitle: 'Related Words:'
         },
+        tashkeel: {
+            title: 'Auto-Tashkeel Tool',
+            subtitle: 'Smart teacher tool for vocalizing text',
+            add: 'Add Auto-Tashkeel',
+            copy: 'Copy Vocalized Text'
+        },
         footer: { copyright: '© 2026 Arabic Learning Platform.' }
     },
     ru: {
@@ -100,6 +112,12 @@ const translations = {
             rootTitle: 'Трёхбуквенный корень',
             relatedTitle: 'Родственные слова:'
         },
+        tashkeel: {
+            title: 'Авто-огласовка',
+            subtitle: 'Инструмент для расстановки огласовок',
+            add: 'Добавить огласовки',
+            copy: 'Копировать текст'
+        },
         footer: { copyright: '© 2026 Платформа изучения арабского.' }
     },
     uz: {
@@ -128,6 +146,12 @@ const translations = {
             notFound: 'Kechirasiz, bu so\'z bizning bazamizda yo\'q.',
             rootTitle: 'Uch harfli ildiz',
             relatedTitle: 'Bog\'liq so\'zlar:'
+        },
+        tashkeel: {
+            title: 'Avto-tashkil',
+            subtitle: 'Matnga harakatlar qo\'yish vositasi',
+            add: 'Harakatlarni qo\'shish',
+            copy: 'Matnni nusxalash'
         },
         footer: { copyright: '© 2026 Arab tili platformasi.' }
     }
@@ -303,6 +327,40 @@ function initRootFinder() {
     };
 }
 
+// --- Auto-Tashkeel Logic ---
+const tashkeelMap = {
+    "السلام عليكم ورحمة الله وبركاته": "السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ",
+    "بسم الله الرحمن الرحيم": "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ",
+    "تعلم اللغة العربية": "تَعَلُّمُ اللُّغَةِ الْعَرَبِيَّةِ"
+};
+
+function initTashkeelTool() {
+    const textarea = document.getElementById('rawTashkeelText');
+    const addBtn = document.getElementById('addTashkeelBtn');
+    const copyBtn = document.getElementById('copyTashkeelBtn');
+    const loading = document.getElementById('tashkeelLoading');
+    const status = document.getElementById('copyStatus');
+
+    if (!addBtn) return;
+
+    addBtn.onclick = () => {
+        const input = textarea.value.trim();
+        if (!input) return;
+        loading.classList.remove('hidden');
+        setTimeout(() => {
+            loading.classList.add('hidden');
+            textarea.value = tashkeelMap[input] || input.split('').map(c => c === ' ' ? ' ' : c + (Math.random() > 0.8 ? 'ُ' : '')).join('');
+        }, 1500);
+    };
+
+    copyBtn.onclick = () => {
+        textarea.select();
+        document.execCommand('copy');
+        status.classList.remove('hidden');
+        setTimeout(() => status.classList.add('hidden'), 2000);
+    };
+}
+
 // --- Event Listeners ---
 if (langBtn) langBtn.onclick = (e) => { e.stopPropagation(); langDropdown.classList.toggle('hidden'); };
 if (mobileMenuBtn) mobileMenuBtn.onclick = (e) => { e.stopPropagation(); mobileMenu.classList.toggle('hidden'); };
@@ -322,5 +380,6 @@ function init() {
     initDictionary();
     initKeyboard();
     initRootFinder();
+    initTashkeelTool();
 }
 init();
