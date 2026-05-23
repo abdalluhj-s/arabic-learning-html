@@ -77,8 +77,23 @@ async function fetchSupabaseData() {
             text_en: l.text_en,
             text_ru: l.text_ru,
             text_uz: l.text_uz,
-            audio_url: l.audio_url
+            audio_url: l.audio_url,
+            quiz: [] // Placeholder for now, fetched per lesson if needed
         }));
+        
+        // Fetch quizzes for all lessons (optional: fetch per lesson to be efficient)
+        const { data: quizzes, error: qError } = await _supabase.from('quizzes').select('*');
+        const { data: options, error: oError } = await _supabase.from('quiz_options').select('*').order('option_index', { ascending: true });
+        
+        if (!qError && !oError) {
+            window.lessonsData.forEach(lesson => {
+                lesson.quiz = quizzes.filter(q => q.lesson_id === lesson.id).map(q => ({
+                    q: q.question_ar,
+                    correct: q.correct_option_index,
+                    options: options.filter(o => o.quiz_id === q.id).map(o => o.option_text)
+                }));
+            });
+        }
     }
 }
 
@@ -239,6 +254,92 @@ function initPresentationMode() {
     exitPresentationBtn.onclick = () => document.body.classList.remove('presentation-active');
 }
 
+// --- Quiz Generator Module (Senior Implementation) ---
+
+function initQuizGenerator() {
+    const genBtn = document.getElementById('generateQuizBtn');
+    const setupArea = document.getElementById('quizSetupArea');
+    const displayArea = document.getElementById('quizDisplayArea');
+    const container = document.getElementById('questionsContainer');
+    const scoreVal = document.getElementById('currentScore');
+    const totalVal = document.getElementById('totalQuestions');
+    const resetBtn = document.getElementById('resetQuizBtn');
+
+    if (!genBtn) return;
+
+    genBtn.addEventListener('click', () => {
+        // 1. Fetch current lesson's quiz data
+        const quiz = window.lessonsData[currentLessonIdx].quiz;
+        if (!quiz || quiz.length === 0) {
+            alert("No quiz data available for this lesson.");
+            return;
+        }
+
+        // 2. UI Reset & Prep
+        let score = 0;
+        scoreVal.textContent = "0";
+        totalVal.textContent = quiz.length;
+        container.innerHTML = '';
+        
+        setupArea.classList.add('hidden');
+        displayArea.classList.remove('hidden');
+
+        // 3. Dynamic Rendering
+        quiz.forEach((item, qIdx) => {
+            const qDiv = document.createElement('div');
+            qDiv.className = 'p-6 bg-slate-50 rounded-3xl border border-slate-100 fade-in';
+            
+            qDiv.innerHTML = `
+                <p class="arabic-text text-2xl font-bold text-slate-800 mb-6 flex items-start gap-4">
+                    <span class="bg-orange-500 text-white w-8 h-8 rounded-xl flex items-center justify-center text-sm flex-shrink-0 mt-1">${qIdx + 1}</span>
+                    ${item.q}
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    ${item.options.map((opt, oIdx) => `
+                        <button 
+                            onclick="handleQuizChoice(this, ${qIdx}, ${oIdx})" 
+                            class="text-right p-5 rounded-2xl border-2 border-white bg-white hover:border-orange-200 transition-all font-medium text-slate-600 outline-none shadow-sm"
+                        >
+                            ${opt}
+                        </button>
+                    `).join('')}
+                </div>
+            `;
+            container.appendChild(qDiv);
+        });
+
+        // Global choice handler bound to window for inline onclick
+        window.handleQuizChoice = (btn, qIndex, choiceIndex) => {
+            const currentQuiz = window.lessonsData[currentLessonIdx].quiz;
+            const correctIndex = currentQuiz[qIndex].correct;
+            const parent = btn.closest('.grid');
+            const buttons = parent.querySelectorAll('button');
+
+            // Disable all options for this question
+            buttons.forEach(b => b.disabled = true);
+
+            if (choiceIndex === correctIndex) {
+                // Correct Choice
+                btn.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
+                score++;
+                scoreVal.textContent = score;
+            } else {
+                // Incorrect Choice
+                btn.classList.add('bg-red-100', 'border-red-500', 'text-red-700');
+                // Highlight actual correct answer
+                buttons[correctIndex].classList.add('bg-green-100', 'border-green-500', 'text-green-700');
+            }
+        };
+    });
+
+    if (resetBtn) {
+        resetBtn.onclick = () => {
+            displayArea.classList.add('hidden');
+            setupArea.classList.remove('hidden');
+        };
+    }
+}
+
 // --- Initialization ---
 
 async function init() {
@@ -248,6 +349,7 @@ async function init() {
     initKeyboard();
     initDictionarySearch();
     initPresentationMode();
+    initQuizGenerator();
     
     document.getElementById('prevLessonBtn').onclick = () => loadLesson(currentLessonIdx - 1);
     document.getElementById('nextLessonBtn').onclick = () => loadLesson(currentLessonIdx + 1);
